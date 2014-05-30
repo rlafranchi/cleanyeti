@@ -1,0 +1,15 @@
+* IMAGE LICENSES *
+
+The following images were obtained from http://lorempixel.com
+License: Creative Commons License -  http://creativecommons.org/licenses
+
+*->  image: 1200x400nature1.jpg
+*->  author url: http://www.flickr.com/photos/spettacolopuro/
+
+*->  image: abstract-q-c-1200-400-1.jpg
+*->  author url: http://www.flickr.com/photos/ttdesign/
+
+*->  image: abstract-q-c-1200-400-8.jpg
+*->  author url: http://www.flickr.com/photos/marlon-bunday-mmx/
+
+All other images are copyright ZURB 2013
