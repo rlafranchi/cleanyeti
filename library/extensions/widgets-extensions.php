@@ -75,7 +75,7 @@ function cleanyeti_widgets_array() {
 			'args' => array (
 				'name' => __( 'Primary Aside', 'cleanyeti' ),
 				'id' => 'primary-aside',
-                'description' => __('The primary widget area, most often used as a sidebar.', 'cleanyeti'),
+        'description' => __('The primary widget area, most often used as a sidebar.', 'cleanyeti'),
 				'before_widget' => cleanyeti_before_widget(),
 				'after_widget' => cleanyeti_after_widget(),
 				'before_title' => cleanyeti_before_title(),
@@ -90,11 +90,11 @@ function cleanyeti_widgets_array() {
 			'args' => array (
 				'name' => __( 'Sections', 'cleanyeti' ),
 				'id' => 'secondary-aside',
-                		'description'       => __('Widgets placed here will display in the right column as an accordian section style.', 'cleanyeti'),
-                		'before_title'      =>'',
-                		'after_title'       =>'</a><div class="content">',
-                		'before_widget'     => '<dd id="%1$s" class="%2$s section-border"><a href="#panel-%1$s">',
-	             		'after_widget'      => '<div class="clearfix"></div></div></dd>'
+        'description'       => __('Widgets placed here will display in the right column as an accordian section style.', 'cleanyeti'),
+        'before_title'      =>'',
+        'after_title'       =>'</a><div class="content">',
+        'before_widget'     => '<dd id="%1$s" class="%2$s section-border"><a href="#panel-%1$s">',
+        'after_widget'      => '<div class="clearfix"></div></div></dd>'
 				),
 			'action_hook'	=> 'widget_area_secondary_aside',
 			'function'		=> 'cleanyeti_secondary_aside',
@@ -144,9 +144,23 @@ function cleanyeti_widgets_array() {
 			'action_hook'	=> 'widget_area_subsidiaries',
 			'function'		=> 'cleanyeti_3rd_subsidiary_aside',
 			'priority'		=> 70,
-		),
-		
-		);
+    ),
+		'Left Sidebar' => array(
+			'admin_menu_order' => 250,
+			'args' => array (
+				'name' => __( 'Left Aside', 'cleanyeti' ),
+				'id' => 'left-aside',
+        'description' => __('The left widget area displayed on the two sidebar template.', 'cleanyeti'),
+				'before_widget' => cleanyeti_before_widget(),
+				'after_widget' => cleanyeti_after_widget(),
+				'before_title' => cleanyeti_before_title(),
+				'after_title' => cleanyeti_after_title(),
+				),
+			'action_hook'	=> 'widget_area_left_aside',
+			'function'		=> 'cleanyeti_left_aside',
+			'priority'		=> 80,
+    )
+  );
 	
 	return apply_filters('cleanyeti_widgetized_areas', $cleanyeti_widgetized_areas);
 	
@@ -207,31 +221,43 @@ add_filter('cleanyeti_widgetized_areas', 'cleanyeti_sort_widgetized_areas', 100)
 /**
  * Opening element for container
  *
- * Width may be changed by editing large-8 to large-*
+ * Width is changed based on layout options
  * If changed, filter for cleanyeti_sidebar_open must be applied
  * Filter: cleanyeti_container
  */
 
 function cleanyeti_container() {
-	global $wp_customize, $cleanyeti_options;
+    global $wp_customize, $cleanyeti_options;
     $cleanyeti_options = cleanyeti_get_options();
     $sbpos = $cleanyeti_options['sidebar_position'];
     $sbwidth = $cleanyeti_options['sidebar_width'];
     $contentwidth = 12 - $sbwidth;
-	if ( is_page_template( 'template-page-fullwidth.php' )) :
-		$open = '<div id="container" class="medium-12 columns">';
-	elseif (is_active_sidebar('primary-aside') || is_active_sidebar('secondary-aside') || ( method_exists ( $wp_customize,'is_preview' ) && $wp_customize->is_preview()  )) :
-		if ( 'left' == $sbpos ) {
-		    $open = '<div id="container" class="medium-' . $contentwidth . ' medium-push-' . $sbwidth . ' columns">';
-		} else {
-		    $open = '<div id="container" class="medium-' . $contentwidth . ' columns">';
-        }
-    else:
+    $lfwdt = $cleanyeti_options['left_sidebar_width'];
+    $rtwdt = $cleanyeti_options['right_sidebar_width'];
+    $twosdb_wdt = 12 - $lfwdt - $rtwdt;
+    $post_sdb = $cleanyeti_options['sidebar_post_layout'];
+    $index_sdb = $cleanyeti_options['sidebar_index_layout'];
+    $archive_sdb = $cleanyeti_options['sidebar_archive_layout'];
+    if ( is_page_template( 'template-page-fullwidth.php' )) {
         $open = '<div id="container" class="medium-12 columns">';
-    endif;
+    } elseif ( is_page_template( 'template-page-left-sidebar.php' ) ) {
+        $open = '<div id="container" class="medium-' . $contentwidth . ' columns">';
+    } elseif ( is_page_template( 'template-page-two-sidebars.php' ) || ( is_archive() && ( 'double' == $archive_sdb ) ) || ( is_home() && ( 'double' == $index_sdb ) ) || ( is_single() && ( 'double' == $post_sdb ) ) ) {
+        get_sidebar('left');
+        $open = '<div id="container" class="medium-' . $twosdb_wdt . ' columns">';
+    } elseif (is_active_sidebar('primary-aside') || is_active_sidebar('secondary-aside') || ( method_exists ( $wp_customize,'is_preview' ) && $wp_customize->is_preview()  )) {
+        if ( 'left' == $sbpos ) {
+            $open = '<div id="container" class="medium-' . $contentwidth . ' medium-push-' . $sbwidth . ' columns">';
+        } else {
+            $open = '<div id="container" class="medium-' . $contentwidth . ' columns">';
+        }
+    } else {
+        $open = '<div id="container" class="medium-12 columns">';
+    }
     echo apply_filters( 'cleanyeti_container', $open );
 }
 add_action( 'cleanyeti_abovecontent', 'cleanyeti_container', 1 );
+
 /**
  * Displays the Primary Aside
  * 
@@ -324,6 +350,20 @@ function cleanyeti_3rd_subsidiary_aside() {
 		echo cleanyeti_before_widget_area('3rd-subsidiary-aside' );
 		dynamic_sidebar( '3rd-subsidiary-aside' );
 		echo cleanyeti_after_widget_area( '3rd-subsidiary-aside' );
+	}
+}
+
+/**
+ * Displays the 3rd Subsidiary Aside
+ *
+ * @uses cleanyeti_before_widget_area
+ * @uses cleanyeti_after_widget_area
+ */
+function cleanyeti_left_aside() {
+	if ( is_active_sidebar( 'left-aside' ) ) {
+		echo cleanyeti_before_widget_area( 'left-aside' );
+		dynamic_sidebar( 'left-aside' );
+		echo cleanyeti_after_widget_area( 'left-aside' );
 	}
 }
 

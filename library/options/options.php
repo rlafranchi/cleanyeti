@@ -292,6 +292,15 @@ function cleanyeti_get_option_parameters() {
         $sbwidth_array[$i]['title'] = $i;
         $i++;
     }
+    
+    $left_sbwidth_array = array();
+    $i = 2;
+    while ( $i <= 4 ) {
+        $left_sbwidth_array[$i]['name'] = $i;
+        $left_sbwidth_array[$i]['title'] = $i;
+        $i++;
+    }
+    
     $noslides = array();
     $i = 3;
     while ( $i <= 10 ) {
@@ -321,153 +330,153 @@ function cleanyeti_get_option_parameters() {
             'default' => 'http://placehold.it/100x100'
         ),
         'display_admin_notice' => array(
-			'name' => 'display_admin_notice',
-			'title' => __( 'Display Admin Notice', 'cleanyeti' ),
-			'type' => 'checkbox',
+            'name' => 'display_admin_notice',
+            'title' => __( 'Display Admin Notice', 'cleanyeti' ),
+            'type' => 'checkbox',
             'description' => __( 'Display Admin Notice about theme settings?', 'cleanyeti' ),
-			'section' => 'info',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 1
-		),
+            'section' => 'info',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 1
+        ),
         'title_position' => array(
-			'name' => 'title_position',
-			'title' => __( 'Main Title Position', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'left' => array(
-					'name' => 'left',
-					'title' => __( 'Left', 'cleanyeti' )
-				),
-				'center' => array(
-					'name' => 'center',
-					'title' => __( 'Center', 'cleanyeti' )
-				),
-				'right' => array(
-					'name' => 'right',
-					'title' => __( 'Right', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Position to dispaly main title below navigation', 'cleanyeti' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'left'
-		),
-		'header_color' => array(
-			'name' => 'header_color',
-			'title' => __( 'Header Color', 'cleanyeti' ),
-			'type' => 'color-picker',
-			'description' => __( 'Choose a color to display in the background of the header.', 'cleanyeti' ),
-			'section' => 'color',
-			'tab' => 'colors',
-			'since' => '2.3.0',
-			'default' => '#FFFFFF'
-		),
-        'header_top_bar_position' => array(
-			'name' => 'header_top_bar_position',
-			'title' => __( 'Header Top Bar Position', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'sticky' => array(
-					'name' => 'sticky',
-					'title' => __( 'Sticky', 'cleanyeti' )
-				),
-				'not_sticky' => array(
-					'name' => 'not_sticky',
-					'title' => __( 'Not Sticky', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Should Header Top Bar stick to the top of the browser or the top of the page?', 'cleanyeti' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'not_sticky'
-		),
-        'header_top_bar_menu_position' => array(
-			'name' => 'header_top_bar_menu_position',
-			'title' => __( 'Header Top Bar Menu Position', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'left' => array(
-					'name' => 'left',
-					'title' => __( 'left', 'cleanyeti' )
-				),
-				'right' => array(
-					'name' => 'right',
-					'title' => __( 'Right', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Choose whether to display menu items on the left or the right in the Top Bar.', 'cleanyeti' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'right'
-		),
-        'display_top_bar_title' => array(
-			'name' => 'display_top_bar_title',
-			'title' => __( 'Display Top Bar Title', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'false' => array(
-					'name' => 'false',
-					'title' => __( 'Do Not Display', 'cleanyeti' )
-				),
-				'true' => array(
-					'name' => 'true',
-					'title' => __( 'Display', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Choose whether or not the site title will display in the Top Bar.', 'cleanyeti' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'true'
-		),
-        'display_footer_credit' => array(
-			'name' => 'display_footer_credit',
-			'title' => __( 'Display Footer Credit', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'false' => array(
-					'name' => 'false',
-					'title' => __( 'Do Not Display', 'cleanyeti' )
-				),
-				'true' => array(
-					'name' => 'true',
-					'title' => __( 'Display', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Display a credit link in the footer? This option is disabled by default, and you are under no obligation whatsoever to enable it.', 'cleanyeti' ),
-			'section' => 'footer',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'false'
-		),
-        'display_custom_copyright' => array(
-			'name' => 'display_custom_copyright',
-			'title' => __( 'Display Custom Copyright Text', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'default' => array(
-				    'name' => 'default',
-				    'title' => __( 'Display Default Copyright Text', 'cleanyeti' )
+            'name' => 'title_position',
+            'title' => __( 'Main Title Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'left' => array(
+                  'name' => 'left',
+                  'title' => __( 'Left', 'cleanyeti' )
                 ),
-				'false' => array(
-					'name' => 'false',
-					'title' => __( 'Do Not Display', 'cleanyeti' )
-				),
-				'true' => array(
-					'name' => 'true',
-					'title' => __( 'Display', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Display custom copyright text? This option is disabled by default.  The default copyright text will display the range of your published post dates and blog title.', 'cleanyeti' ),
-			'section' => 'footer',
-			'tab' => 'general',
-			'since' => '2.3.0',
-			'default' => 'default'
-		),
+                'center' => array(
+                  'name' => 'center',
+                  'title' => __( 'Center', 'cleanyeti' )
+                ),
+                'right' => array(
+                  'name' => 'right',
+                  'title' => __( 'Right', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Position to dispaly main title below navigation', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'left'
+        ),
+        'header_color' => array(
+            'name' => 'header_color',
+            'title' => __( 'Header Color', 'cleanyeti' ),
+            'type' => 'color-picker',
+            'description' => __( 'Choose a color to display in the background of the header.', 'cleanyeti' ),
+            'section' => 'color',
+            'tab' => 'colors',
+            'since' => '2.3.0',
+            'default' => '#FFFFFF'
+        ),
+        'header_top_bar_position' => array(
+            'name' => 'header_top_bar_position',
+            'title' => __( 'Header Top Bar Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'sticky' => array(
+                  'name' => 'sticky',
+                  'title' => __( 'Sticky', 'cleanyeti' )
+                ),
+                'not_sticky' => array(
+                  'name' => 'not_sticky',
+                  'title' => __( 'Not Sticky', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Should Header Top Bar stick to the top of the browser or the top of the page?', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'not_sticky'
+        ),
+        'header_top_bar_menu_position' => array(
+            'name' => 'header_top_bar_menu_position',
+            'title' => __( 'Header Top Bar Menu Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'left' => array(
+                    'name' => 'left',
+                    'title' => __( 'left', 'cleanyeti' )
+                ),
+                'right' => array(
+                    'name' => 'right',
+                    'title' => __( 'Right', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether to display menu items on the left or the right in the Top Bar.', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'right'
+        ),
+        'display_top_bar_title' => array(
+            'name' => 'display_top_bar_title',
+            'title' => __( 'Display Top Bar Title', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'false' => array(
+                    'name' => 'false',
+                    'title' => __( 'Do Not Display', 'cleanyeti' )
+                ),
+                'true' => array(
+                    'name' => 'true',
+                    'title' => __( 'Display', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not the site title will display in the Top Bar.', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'true'
+        ),
+        'display_footer_credit' => array(
+            'name' => 'display_footer_credit',
+            'title' => __( 'Display Footer Credit', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+            'false' => array(
+              'name' => 'false',
+              'title' => __( 'Do Not Display', 'cleanyeti' )
+            ),
+            'true' => array(
+              'name' => 'true',
+              'title' => __( 'Display', 'cleanyeti' )
+            )
+            ),
+            'description' => __( 'Display a credit link in the footer? This option is disabled by default, and you are under no obligation whatsoever to enable it.', 'cleanyeti' ),
+            'section' => 'footer',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'false'
+        ),
+        'display_custom_copyright' => array(
+            'name' => 'display_custom_copyright',
+            'title' => __( 'Display Custom Copyright Text', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+            'default' => array(
+                'name' => 'default',
+                'title' => __( 'Display Default Copyright Text', 'cleanyeti' )
+                    ),
+            'false' => array(
+              'name' => 'false',
+              'title' => __( 'Do Not Display', 'cleanyeti' )
+            ),
+            'true' => array(
+              'name' => 'true',
+              'title' => __( 'Display', 'cleanyeti' )
+            )
+            ),
+            'description' => __( 'Display custom copyright text? This option is disabled by default.  The default copyright text will display the range of your published post dates and blog title.', 'cleanyeti' ),
+            'section' => 'footer',
+            'tab' => 'general',
+            'since' => '2.3.0',
+            'default' => 'default'
+        ),
         'copyright_text' => array(
             'name' => 'copyright_text',
             'title' => __( 'Custom Copyright Text', 'cleanyeti' ),
@@ -479,16 +488,16 @@ function cleanyeti_get_option_parameters() {
             'since' => '2.3.0',
             'default' => '&copy; ' . get_bloginfo('name')
         ),
-		'footer_color' => array(
-			'name' => 'footer_color',
-			'title' => __( 'Footer Color', 'cleanyeti' ),
-			'type' => 'color-picker',
-			'description' => __( 'Choose a color to display in the background of the footer.', 'cleanyeti' ),
-			'section' => 'color',
-			'tab' => 'colors',
-			'since' => '2.3.0',
-			'default' => '#FFFFFF'
-		),
+        'footer_color' => array(
+            'name' => 'footer_color',
+            'title' => __( 'Footer Color', 'cleanyeti' ),
+            'type' => 'color-picker',
+            'description' => __( 'Choose a color to display in the background of the footer.', 'cleanyeti' ),
+            'section' => 'color',
+            'tab' => 'colors',
+            'since' => '2.3.0',
+            'default' => '#FFFFFF'
+        ),
         'primary' => array(
             'name' => 'primary',
             'title' => __( 'Primary Color', 'cleanyeti' ),
@@ -650,32 +659,94 @@ function cleanyeti_get_option_parameters() {
             'default' => false
         ),
         'sidebar_position' => array(
-			'name' => 'sidebar_position',
-			'title' => __( 'Sidebar Position', 'cleanyeti' ),
-			'type' => 'select',
-			'valid_options' => array(
-				'left' => array(
-					'name' => 'left',
-					'title' => __( 'Left', 'cleanyeti' )
-				),
-				'right' => array(
-					'name' => 'right',
-					'title' => __( 'Right', 'cleanyeti' )
-				)
-			),
-			'description' => __( 'Choose the positiong in which you would like to display the sidebar.', 'cleanyeti' ),
-			'section' => 'layouts',
-			'tab' => 'layout',
-			'since' => '2.3.0',
-			'default' => 'right'
-		),
+            'name' => 'sidebar_position',
+            'title' => __( 'Sidebar Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'left' => array(
+                    'name' => 'left',
+                    'title' => __( 'Left', 'cleanyeti' )
+                ),
+                'right' => array(
+                    'name' => 'right',
+                    'title' => __( 'Right', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose the positiong in which you would like to display the sidebar.', 'cleanyeti' ),
+            'section' => 'layouts',
+            'tab' => 'layout',
+            'since' => '2.3.0',
+            'default' => 'right',
+            'post_meta' => true
+		    ),
+        'sidebar_post_layout' => array(
+            'name' => 'sidebar_post_layout',
+            'title' => __( 'Sidebar Post Layout', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'single' => array(
+                    'name' => 'single',
+                    'title' => __( 'Single Sidebar', 'cleanyeti' )
+                ),
+                'double' => array(
+                    'name' => 'double',
+                    'title' => __( 'Left and Right Sidebar', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not to have a single sidebar or a left and right sidebar on posts. There is an option to override for each post.', 'cleanyeti' ),
+            'section' => 'main',
+            'tab' => 'layout',
+            'since' => '2.3.4',
+            'default' => 'single',
+            'post_meta' => true
+		    ),
+        'sidebar_index_layout' => array(
+            'name' => 'sidebar_index_layout',
+            'title' => __( 'Sidebar Index Layout', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'single' => array(
+                    'name' => 'single',
+                    'title' => __( 'Single Sidebar', 'cleanyeti' )
+                ),
+                'double' => array(
+                    'name' => 'double',
+                    'title' => __( 'Left and Right Sidebar', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not to have a single sidebar or a left and right sidebar on the Blog index page.', 'cleanyeti' ),
+            'section' => 'main',
+            'tab' => 'layout',
+            'since' => '2.3.4',
+            'default' => 'single',
+		    ),
+        'sidebar_archive_layout' => array(
+            'name' => 'sidebar_archive_layout',
+            'title' => __( 'Sidebar Archive Layout', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'single' => array(
+                    'name' => 'single',
+                    'title' => __( 'Single Sidebar', 'cleanyeti' )
+                ),
+                'double' => array(
+                    'name' => 'double',
+                    'title' => __( 'Left and Right Sidebar', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not to have a single sidebar or a left and right sidebar on archive pages.', 'cleanyeti' ),
+            'section' => 'main',
+            'tab' => 'layout',
+            'since' => '2.3.4',
+            'default' => 'single',
+		    ),
         'max_width' => array(
             'name' => 'max_width',
             'title' => __( 'Maximum Content Width', 'cleanyeti' ),
             'type' => 'select',
             'valid_options' => $width_array,
             'description' => __( 'Choose the maximum content width.  This value is the maximum width of the main content and the sidebar combined.', 'cleanyeti'),
-            'section' => 'layouts',
+            'section' => 'main',
             'tab' => 'layout',
             'since' => '2.3.0',
             'default' => '1200'
@@ -690,6 +761,30 @@ function cleanyeti_get_option_parameters() {
             'tab' => 'layout',
             'since' => '2.3.0',
             'default' => '4'
+        ),
+        'left_sidebar_width' => array(
+            'name' => 'left_sidebar_width',
+            'title' => __( 'Left Sidebar Column Width', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => $left_sbwidth_array,
+            'description' => __( 'Choose the left sidebar column width for the two sidebar template.  Width is based on a 12 column grid.', 'cleanyeti' ),
+            'section' => 'layout_two',
+            'tab' => 'layout',
+            'since' => '2.3.4',
+            'default' => '3',
+            'post_meta' => true
+        ),
+        'right_sidebar_width' => array(
+            'name' => 'right_sidebar_width',
+            'title' => __( 'Right Sidebar Column Width', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => $left_sbwidth_array,
+            'description' => __( 'Choose the right sidebar column width for the two sidebar template.  Width is based on a 12 column grid.', 'cleanyeti' ),
+            'section' => 'layout_two',
+            'tab' => 'layout',
+            'since' => '2.3.4',
+            'default' => '3',
+            'post_meta' => true
         ),
         'no_slides' => array(
             'name' => 'no_slides',
@@ -827,74 +922,87 @@ function cleanyeti_get_settings_by_tab() {
  */
 function cleanyeti_get_settings_page_tabs() {
 	
-	$tabs = array(
-        'general' => array(
-			'name' => 'general',
-			'title' => __( 'General', 'cleanyeti' ),
-			'sections' => array(
-				'info' => array(
-				    'name' => 'info',
-				    'title' => __( 'Thank You for using the Clean Yeti Theme', 'cleanyeti' ),
-				    'description' => cleanyeti_theme_info()
-                ),
-				'header' => array(
-					'name' => 'header',
-					'title' => __( 'Header Options', 'cleanyeti' ),
-					'description' => __( 'Manage Header options for the Clean Yeti Theme. Refer to the contextual help screen for descriptions and help regarding each theme option.', 'cleanyeti' )
-				),
-				'footer' => array(
-					'name' => 'footer',
-					'title' => __( 'Footer Options', 'cleanyeti' ),
-					'description' => __( 'Manage Footer options for the Clean Yeti Theme. Refer to the contextual help screen for descriptions and help regarding each theme option.', 'cleanyeti' )
-				)
-			)
-		),
-        'colors' => array(
-			'name' => 'colors',
-			'title' => __( 'Colors', 'cleanyeti' ),
-			'sections' => array(
-				'color' => array(
-					'name' => 'color',
-					'title' => __( 'Color Options', 'cleanyeti' ),
-					'description' => __( 'Choose from a variety of color options to customize your site.', 'cleanyeti' )
-				),
-			)
-		), 
-        'foundation_settings' => array(
-			'name' => 'foundation_settings',
-			'title' => __( 'Foundation Settings', 'cleanyeti' ),
-			'sections' => array(
-                'javascript' => array(
-                    'name' => 'javascript',
-                    'title' => __( 'Javascript Libraries', 'cleanyeti' ),
-                    'description' => __( 'Choose which Foundation javascript libraries you would like to load.  If you decided to load all libraries, then it is recommended to use a plugin such as W3 total cache to increase page load speed.  Clean Yeti loads the Orbit Slider, Reveal, Accordion, Tabs, and Top Bar libraries by default, since these features are integrated into the theme.', 'cleanyeti' ),
-                ),
-			)
-		),
-        'layout' => array(
-			'name' => 'layout',
-			'title' => __( 'Layout', 'cleanyeti' ),
-			'sections' => array(
-				'layouts' => array(
-					'name' => 'layouts',
-					'title' => __( 'Content Arrangement', 'cleanyeti' ),
-					'description' => __( 'Manage the layout and sizes of the main content and sidebar.', 'cleanyeti' )
-				),
-			)
-		),
-        'orbit' => array(
-			'name' => 'orbit',
-			'title' => __( 'Orbit Slider', 'cleanyeti' ),
-			'sections' => array(
-				'slides' => array(
-					'name' => 'slides',
-					'title' => __( 'Front Page Orbit Slider', 'cleanyeti' ),
-					'description' => __( 'Choose your images and pages to link to for the front page slider.  In order for this to work, the orbit slider library must be loaded under the Foundation Settings.  1200 x 400 is the recommended image resolutions for the slides.', 'cleanyeti' )
-				),
-			)
-		),
-    );
-	return apply_filters( 'cleanyeti_get_settings_page_tabs', $tabs );
+$tabs = array(
+    'general' => array(
+        'name' => 'general',
+        'title' => __( 'General', 'cleanyeti' ),
+        'sections' => array(
+            'info' => array(
+                'name' => 'info',
+                'title' => __( 'Thank You for using the Clean Yeti Theme', 'cleanyeti' ),
+                'description' => cleanyeti_theme_info()
+                    ),
+            'header' => array(
+                'name' => 'header',
+                'title' => __( 'Header Options', 'cleanyeti' ),
+                'description' => __( 'Manage Header options for the Clean Yeti Theme. Refer to the contextual help screen for descriptions and help regarding each theme option.', 'cleanyeti' )
+            ),
+            'footer' => array(
+                'name' => 'footer',
+                'title' => __( 'Footer Options', 'cleanyeti' ),
+                'description' => __( 'Manage Footer options for the Clean Yeti Theme. Refer to the contextual help screen for descriptions and help regarding each theme option.', 'cleanyeti' )
+            )
+        ),
+    ),
+    'colors' => array(
+        'name' => 'colors',
+        'title' => __( 'Colors', 'cleanyeti' ),
+        'sections' => array(
+            'color' => array(
+                'name' => 'color',
+                'title' => __( 'Color Options', 'cleanyeti' ),
+                'description' => __( 'Choose from a variety of color options to customize your site.', 'cleanyeti' )
+            ),
+        ),
+    ), 
+    'foundation_settings' => array(
+        'name' => 'foundation_settings',
+        'title' => __( 'Foundation Settings', 'cleanyeti' ),
+        'sections' => array(
+            'javascript' => array(
+                'name' => 'javascript',
+                'title' => __( 'Javascript Libraries', 'cleanyeti' ),
+                'description' => __( 'Choose which Foundation javascript libraries you would like to load.  If you decided to load all libraries, then it is recommended to use a plugin such as W3 total cache to increase page load speed.  Clean Yeti loads the Orbit Slider, Reveal, Accordion, Tabs, and Top Bar libraries by default, since these features are integrated into the theme.', 'cleanyeti' ),
+            ),
+        ),
+    ),
+    'layout' => array(
+        'name' => 'layout',
+        'title' => __( 'Layout', 'cleanyeti' ),
+        'sections' => array(
+            'main' => array(
+                'name' => 'main',
+                'title' => __( 'Layout', 'cleanyeti' ),
+                'description' => __( 'Adjust row width and other content widths for single and two sidebar layouts.', 'cleanyeti' )
+            ),
+            'layouts' => array(
+                'name' => 'layouts',
+                'title' => __( 'Content Arrangement for Single Sidebar', 'cleanyeti' ),
+                'description' => __( 'Manage the layout and sizes of the main content and sidebar.', 'cleanyeti' ),
+                'post_meta' => true
+            ),
+            'layout_two' => array(
+                'name' => 'layout_two',
+                'title' => __( 'Content Arrangement for Two Sidebars', 'cleanyeti' ),
+                'description' => __( 'Manage the layout and sizes of the main content and both sidebars for the two sidebar page template.', 'cleanyeti' ),
+                'post_meta' => true
+            ),
+        ),
+        'post_meta' => true
+    ),
+    'orbit' => array(
+        'name' => 'orbit',
+        'title' => __( 'Orbit Slider', 'cleanyeti' ),
+        'sections' => array(
+            'slides' => array(
+                'name' => 'slides',
+                'title' => __( 'Front Page Orbit Slider', 'cleanyeti' ),
+                'description' => __( 'Choose your images and pages to link to for the front page slider.  In order for this to work, the orbit slider library must be loaded under the Foundation Settings.  1200 x 400 is the recommended image resolutions for the slides.', 'cleanyeti' )
+            ),
+        ),
+    ),
+);
+return apply_filters( 'cleanyeti_get_settings_page_tabs', $tabs );
 }
 
 function cleanyeti_theme_info() {
@@ -920,48 +1028,4 @@ function cleanyeti_admin_notices($hook_suffix) {
     }
 }
 add_action( 'admin_notices', 'cleanyeti_admin_notices' );
-
-function cleanyeti_old_options_update() {
-    global $cleanyeti_options;
-    $cleanyeti_options = cleanyeti_get_options();
-    $old_cpopt = get_option( 'cleanyeti_copyright_option', 'notset' );
-	$old_cptext = get_option( 'cleanyeti_copyright_text', 'notset' );
-	$old_credit = get_option( 'cleanyeti_credit', 'notset' );
-	if ( 'notset' != $old_cpopt ) {
-        if ( 1 == $old_cpopt ) {
-	        $cleanyeti_options['display_custom_copyright'] = 'true';
-	        update_option( 'theme_cleanyeti_options', $cleanyeti_options );
-        }
-	    delete_option( 'cleanyeti_copyright_option' );
-    }
-	if ( 'notset' != $old_cptext ) {
-	    $cleanyeti_options['copyright_text'] = $old_cptext;
-	    update_option( 'theme_cleanyeti_options', $cleanyeti_options );
-	    delete_option( 'cleanyeti_copyright_text' );
-    }
-	if ( 'notset' != $old_credit ) {
-	    if ( 1 == $old_credit ) {
-            $cleanyeti_options['display_footer_credit'] = 'true';
-            update_option( 'theme_cleanyeti_options', $cleanyeti_options );
-	    }
-	    delete_option( 'cleanyeti_credit' );
-    }
-    $old_options = get_option( 'cleanyeti_options', 'notset' );
-    if ( 'notset' != $old_options ) {
-        $noslides = $old_options['orbit_select'];
-        $cleanyeti_options['no_slides'] = $noslides;
-        $cleanyeti_options['logo'] = $old_options['logo_image'];
-        $i = 1;
-        while ( $i <= 10 ) {
-            if ( isset( $old_options['orbit_page' . $i] ) )
-                $cleanyeti_options['orbit_page_link_' . $i] = $old_options['orbit_page' . $i];
-            if ( isset( $old_options['orbit_image' . $i] ) )
-                $cleanyeti_options['orbit_image_' . $i] = $old_options['orbit_image' . $i];
-            $i++;
-        }
-        update_option( 'theme_cleanyeti_options', $cleanyeti_options );
-        delete_option( 'cleanyeti_options' );
-    }
-}
-add_action( 'admin_menu', 'cleanyeti_old_options_update', 9999 );
 ?>

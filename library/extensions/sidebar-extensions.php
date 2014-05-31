@@ -28,7 +28,7 @@ function cleanyeti_sidebar() {
 } // end cleanyeti_sidebar
 
 /**
- * Opening & closing element for sidebar
+ * Opening & closing element for sidebars
  *
  * Width may be changed by editing large-4 to large-*
  * If changed, filter for cleanyeti_container must be applied
@@ -41,10 +41,20 @@ function cleanyeti_sidebar_open() {
     $sbpos = $cleanyeti_options['sidebar_position'];
     $sbwidth = $cleanyeti_options['sidebar_width'];
     $pullwidth = 12 - $sbwidth;
-    if ( 'left' == $sbpos ) {
-        $open = '<div class="medium-' . $sbwidth . ' medium-pull-' . $pullwidth . ' columns">';
+    $rtwdt = $cleanyeti_options['right_sidebar_width'];
+    $post_sdb = $cleanyeti_options['sidebar_post_layout'];
+    $index_sdb = $cleanyeti_options['sidebar_index_layout'];
+    $archive_sdb = $cleanyeti_options['sidebar_archive_layout'];
+    if ( is_page_template( 'template-page-two-sidebars.php' ) || ( is_archive() && ( 'double' == $archive_sdb ) ) || ( is_home() && ( 'double' == $index_sdb ) ) || ( is_single() && ( 'double' == $post_sdb ) ) ) {
+        $open = '<div class="medium-' . $rtwdt . ' columns">';
+    } elseif ( is_page_template( 'template-page-left-sidebar.php' ) ) {
+        $open = '<div id="container" class="medium-' . $sbwidth . ' columns">';
     } else {
-        $open = '<div class="medium-' . $sbwidth . ' columns">';
+        if ( 'left' == $sbpos ) {
+            $open = '<div class="medium-' . $sbwidth . ' medium-pull-' . $pullwidth . ' columns">';
+        } else {
+            $open = '<div class="medium-' . $sbwidth . ' columns">';
+        }
     }
     echo apply_filters('cleanyeti_sidebar_open', $open);
 }
@@ -55,6 +65,15 @@ function cleanyeti_sidebar_close() {
     echo apply_filters('cleanyeti_sidebar_close', $close);
 }
 add_action( 'cleanyeti_belowmainasides', 'cleanyeti_sidebar_close', 99);
+add_action( 'cleanyeti_belowleftaside', 'cleanyeti_sidebar_close', 99);
+
+function cleanyeti_sidebar_left_open() {
+    $options = cleanyeti_get_options();
+    $left = $options['left_sidebar_width'];
+    $open = '<div class="medium-' . $left . ' columns">';
+    echo apply_filters('cleanyeti_sidebar_left_open', $open);
+}
+add_action( 'cleanyeti_aboveleftaside', 'cleanyeti_sidebar_left_open', 1 );
 
 /* 
  * Main Aside Hooks
@@ -113,6 +132,37 @@ function cleanyeti_widget_area_secondary_aside() {
  */
 function cleanyeti_belowmainasides() {
     do_action('cleanyeti_belowmainasides');
+}
+
+
+/**
+ * Register action hook: widget_area_left_aside 
+ *
+ * Located in sidebar-two.php
+ * Regular hook for left widget area
+ */
+function cleanyeti_widget_area_left_aside() {
+    do_action('widget_area_left_aside');
+}
+
+/**
+ * Register action hook: cleanyeti_belowleftaside 
+ *
+ * Located in sidebar-two.php
+ * Just after the left aside (commonly used as sidebars)
+ */
+function cleanyeti_belowleftaside() {
+    do_action('cleanyeti_belowleftaside');
+}
+
+/**
+ * Register action hook: cleanyeti_aboveleftaside 
+ *
+ * Located in sidebar-two.php
+ * Just before the left aside (commonly used as sidebars)
+ */
+function cleanyeti_aboveleftaside() {
+    do_action('cleanyeti_aboveleftaside');
 }
 
 
