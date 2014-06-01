@@ -187,19 +187,19 @@ if ( function_exists('childtheme_override_head_scripts') )  {
 		wp_register_style( 'foundation-icons-accessibility', get_template_directory_uri() . '/library/Foundation/fonts/foundation_icons_all/foundation_icons_accessibility/stylesheets/accessibility_foundicons.css');
 		wp_enqueue_style( 'foundation-icons-accessibility' );
 
-		wp_enqueue_script( 'cleanyeti-modernizr-js', get_template_directory_uri() . '/library/Foundation/js/modernizr.js', array( 'jquery' ), '2.7.2' );
-		wp_enqueue_script( 'cleanyeti-foundation-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.js', array(), '5.2.1', true );
-        wp_enqueue_script( 'cleanyeti-foundation-accordion-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.accordion.js', array(), '5.2.1', true );
-        wp_enqueue_script( 'cleanyeti-foundation-tabs-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.tab.js', array(), '5.2.1', true );
-        wp_enqueue_script( 'cleanyeti-foundation-topbar-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.topbar.js', array(), '5.2.1', true );
+		wp_enqueue_script( 'cleanyeti-modernizr-js', get_template_directory_uri() . '/library/Foundation/js/modernizr.js', array( 'jquery' ), '2.8.2' );
+		wp_enqueue_script( 'cleanyeti-foundation-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.js', array(), '5.2.3', true );
+        wp_enqueue_script( 'cleanyeti-foundation-accordion-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.accordion.js', array(), '5.2.3', true );
+        wp_enqueue_script( 'cleanyeti-foundation-tabs-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.tab.js', array(), '5.2.3', true );
+        wp_enqueue_script( 'cleanyeti-foundation-topbar-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.topbar.js', array(), '5.2.3', true );
         foreach ( $option_parameters as $option_parameter ) {
             $section = $option_parameter['section'];
             $name = $option_parameter['name'];
             if ( 'javascript' == $section && isset( $cleanyeti_options[$name] ) && 1 == $cleanyeti_options[$name] ) {
-                wp_enqueue_script( 'cleanyeti-foundation-' . $name . '-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.' . $name . '.js', array(), '5.2.1', true );
+                wp_enqueue_script( 'cleanyeti-foundation-' . $name . '-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.' . $name . '.js', array(), '5.2.3', true );
             }
         }
-        wp_enqueue_script( 'cleanyeti-document-js', get_template_directory_uri() . '/library/Foundation/js/document.js', array () , '5.2.1', true );
+        wp_enqueue_script( 'cleanyeti-document-js', get_template_directory_uri() . '/library/Foundation/js/document.js', array () , '5.2.3', true );
 	}
 }
 
