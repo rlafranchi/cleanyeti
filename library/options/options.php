@@ -693,7 +693,7 @@ function cleanyeti_get_option_parameters() {
                     'title' => __( 'Left and Right Sidebar', 'cleanyeti' )
                 )
             ),
-            'description' => __( 'Choose whether or not to have a single sidebar or a left and right sidebar on posts. There is an option to override for each post.', 'cleanyeti' ),
+            'description' => __( 'Choose whether or not to have a single sidebar or a left and right sidebar on posts.', 'cleanyeti' ),
             'section' => 'main',
             'tab' => 'layout',
             'since' => '2.3.4',
