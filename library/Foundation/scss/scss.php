@@ -27,9 +27,9 @@ function cleanyeti_scss_compile() {
     }
     update_option( 'theme_cleanyeti_options', $valid_fields );
 
-    $scsspath = get_stylesheet_directory() . '/library/Foundation/scss/';
+    $scsspath = get_template_directory() . '/library/Foundation/scss/';
     $scssname = $scsspath . '_cleanyeti.scss';
-    $csspath = get_stylesheet_directory() . '/library/Foundation/css/';
+    $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyeti.css';
 
     ob_start();
@@ -103,9 +103,9 @@ function cleanyeti_ajax_callback() {
         print_r( $creds );
     }
 
-    $scsspath = get_stylesheet_directory() . '/library/Foundation/scss/';
+    $scsspath = get_template_directory() . '/library/Foundation/scss/';
     $scssname = $scsspath . '_cleanyetipreview.scss';
-    $csspath = get_stylesheet_directory() . '/library/Foundation/css/';
+    $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyetipreview.css';
 
     ob_start();
@@ -151,9 +151,9 @@ function cleanyeti_scss_compile_save() {
         return true;
     }
 
-    $scsspath = get_stylesheet_directory() . '/library/Foundation/scss/';
+    $scsspath = get_template_directory() . '/library/Foundation/scss/';
     $scssname = $scsspath . '_cleanyeti.scss';
-    $csspath = get_stylesheet_directory() . '/library/Foundation/css/';
+    $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyeti.css';
 
     ob_start();
