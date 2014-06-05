@@ -685,16 +685,19 @@ if (function_exists('childtheme_override_pageeditlink'))  {
 	 * Filter: cleanyeti_pageeditlink
 	 */
 	function cleanyeti_pageeditlink() {
-
-    	$posteditlink = sprintf( '<a href="%s" title="%s">%s</a>' , 
+    
+    if (current_user_can('edit_posts')) {
+    	  $posteditlink = sprintf( '<a href="%s" title="%s">%s</a>' , 
 
 			    			get_edit_post_link(),
 			    			esc_attr__('Edit page', 'cleanyeti'),
-							/* translators: post edit link */
+							  /* translators: post edit link */
 			    			__('Edit', 'cleanyeti'));
-		
-		return apply_filters('cleanyeti_pageeditlink', $posteditlink); 
-
+			   
+    } else {
+        $posteditlink = '';
+    }
+    return apply_filters('cleanyeti_pageeditlink', $posteditlink);
 	}
 } // end pageeditlink
 
