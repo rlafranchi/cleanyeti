@@ -41,8 +41,9 @@ function cleanyeti_orbit_slider_content() {
 
     $orbitoptions = cleanyeti_get_options();
     $orbitselect = $orbitoptions['no_slides'];
-    $orbitdisplay = $orbitoptions['orbit'];                          
-    if (( 1 == $orbitdisplay ) && is_front_page() ) : ?>
+    $orbitdisplay = $orbitoptions['display_orbit'];
+    $orbit_lib  = $orbitoptions['orbit'];                       
+    if ( ( 'true' == $orbitdisplay ) && is_front_page() && ( 1 == $orbit_lib ) ) : ?>
         <div class="row show-for-medium-up">
             <div class="medium-12 columns">
                 <ul data-orbit>

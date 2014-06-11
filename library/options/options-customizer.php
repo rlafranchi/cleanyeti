@@ -47,11 +47,24 @@ function cleanyeti_register_theme_customizer( $wp_customize ){
 
 	// Add Settings
 	foreach ( $option_parameters as $option_parameter ) {
+		// sanitize callback based on type
+		if ( 'text' == $option_parameter['type'] )
+      $sanitize = 'cleanyeti_sanitize_text';
+    else if ( 'checkbox' == $option_parameter['type'] )
+      $sanitize = 'cleanyeti_sanitize_checkbox';
+    else if ( 'radio' == $option_parameter['type'] || 'select' == $option_parameter['type'] )
+      $sanitize = 'cleanyeti_sanitize_choices';
+    else if ( 'color-picker' == $option_parameter['type'] )
+      $sanitize = 'sanitize_hex_color';
+    else if ( 'image' == $option_parameter['type'] )
+      $sanitize = 'esc_url';
+		
 		$prio = ( isset( $option_parameter['priority'] ) ? $option_parameter['priority'] : 1 );
 		// Add $option_parameter setting
 		$wp_customize->add_setting( 'theme_cleanyeti_options[' . $option_parameter['name'] . ']', array(
 			'default'        => $option_parameter['default'],
 			'type'           => 'option',
+			'sanitize'       => $sanitize
 		) );
 
 		// Add $option_parameter control
@@ -84,11 +97,11 @@ function cleanyeti_register_theme_customizer( $wp_customize ){
 				'choices'    => $valid_options,
 			) );
 
-		} else if ( 'select' == $option_parameter['type'] ) {
-			$valid_options = array();
-			foreach ( $option_parameter['valid_options'] as $valid_option ) {
-				$valid_options[$valid_option['name']] = $valid_option['title'];
-			}
+		  } else if ( 'select' == $option_parameter['type'] ) {
+			   $valid_options = array();
+			  foreach ( $option_parameter['valid_options'] as $valid_option ) {
+				  $valid_options[$valid_option['name']] = $valid_option['title'];
+			  }
 			$wp_customize->add_control( 'cleanyeti_' . $option_parameter['name'], array(
 				'label'   => $option_parameter['title'],
 				'section' => 'cleanyeti_' . $option_parameter['tab'],
@@ -97,7 +110,7 @@ function cleanyeti_register_theme_customizer( $wp_customize ){
 				'choices'    => $valid_options,
 				'priority' => $prio
 			) );
-		} else if ( 'color-picker' == $option_parameter['type'] ) {
+		  } else if ( 'color-picker' == $option_parameter['type'] ) {
             $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cleanyeti_' . $option_parameter['name'], array(
 		        'label'      => $option_parameter['title'],
 		        'section'    => 'cleanyeti_' . $option_parameter['tab'],
@@ -135,4 +148,38 @@ function cleanyeti_orbit_customizer_script() {
 		wp_enqueue_script( 'cleanyeti-orbit-customizer', get_template_directory_uri() . '/library/scripts/orbit-customizer.js', array( 'jquery' ) );
 }
 add_action( 'customize_controls_print_scripts', 'cleanyeti_orbit_customizer_script' );
+
+/**
+ * Theme customizer sanitize callback for text fields
+ */
+
+function cleanyeti_sanitize_text( $input ) {
+    return wp_filter_nohtml_kses( $input );
+}
+
+/**
+ * Theme customizer sanitize callback for checkbox fields
+ */
+function cleanyeti_sanitize_checkbox( $input ) {
+    $input = ( ( isset( $input ) && true == $input ) ? true : false );
+    return $input;
+}
+
+/**
+ * Sanitize select and radio fields
+ * @link http://cachingandburning.com/wordpress-theme-customizer-sanitizing-radio-buttons-and-select-lists/
+ *
+ */
+function cleanyeti_sanitize_choices( $input, $setting ) {
+    global $wp_customize;
+    $name = preg_replace('/theme_cleanyeti_options\[(.*)\]/', '$1', $setting->id);
+    $control = $wp_customize->get_control( 'cleanyeti_' . $name );
+    $choices = $control->choices;
+
+    if ( array_key_exists( $input, $choices ) ) {
+        return $input;      
+    } else {
+        return $setting->default;
+    }
+}
 ?>

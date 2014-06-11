@@ -796,6 +796,26 @@ function cleanyeti_get_option_parameters() {
             'tab' => 'orbit',
             'since' => '2.3.0',
             'default' => '3'
+        ),
+        'display_orbit' => array(
+            'name' => 'display_orbit',
+            'title' => __( 'Display Orbit Slider', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'false' => array(
+                  'name' => 'false',
+                  'title' => __( 'Do Not Display', 'cleanyeti' )
+                ),
+                'true' => array(
+                  'name' => 'true',
+                  'title' => __( 'Display', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not to display the Orbit Slider.  If enabled, the slider will only appear on the front page.', 'cleanyeti' ),
+            'section' => 'slides',
+            'tab' => 'orbit',
+            'since' => '2.4.1',
+            'default' => 'false'
         )
     );
 
