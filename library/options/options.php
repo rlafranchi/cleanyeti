@@ -858,10 +858,6 @@ function cleanyeti_get_option_parameters() {
                   'name' => 'left',
                   'title' => __( 'Left', 'cleanyeti' )
                 ),
-                'center' => array(
-                  'name' => 'center',
-                  'title' => __( 'Center', 'cleanyeti' )
-                ),
                 'right' => array(
                   'name' => 'right',
                   'title' => __( 'Right', 'cleanyeti' )
