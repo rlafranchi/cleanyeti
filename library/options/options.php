@@ -816,7 +816,63 @@ function cleanyeti_get_option_parameters() {
             'tab' => 'orbit',
             'since' => '2.4.1',
             'default' => 'false'
-        )
+        ),
+        'flex_menu_location' => array(
+            'name' => 'flex_menu_location',
+            'title' => __( 'Flexible Menu Location', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'aboveheader' => array(
+                    'name' => 'aboveheader',
+                    'title' => __( 'Above Header', 'cleanyeti' )
+                ),
+                'belowheader' => array(
+                    'name' => 'belowheader',
+                    'title' => __( 'Below Header', 'cleanyeti' )
+                ),
+                'abovefooter' => array(
+                    'name' => 'abovefooter',
+                    'title' => __( 'Above Footer', 'cleanyeti' )
+                ),
+                'belowwidgets' => array(
+                    'name' => 'belowwidgets',
+                    'title' => __( 'Below Footer Widgets', 'cleanyeti' )
+                ),
+                'belowfooter' => array(
+                    'name' => 'belowfooter',
+                    'title' => __( 'Below Footer', 'cleanyeti' )
+                ),
+            ),
+            'description' => __( 'Choose where to display flexible menu.', 'cleanyeti' ),
+            'section' => 'flex_menu',
+            'tab' => 'menus',
+            'since' => '2.4.2',
+            'default' => 'belowheader'   
+        ),
+        'flex_menu_position' => array(
+            'name' => 'flex_menu_position',
+            'title' => __( 'Flexible Menu Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'left' => array(
+                  'name' => 'left',
+                  'title' => __( 'Left', 'cleanyeti' )
+                ),
+                'center' => array(
+                  'name' => 'center',
+                  'title' => __( 'Center', 'cleanyeti' )
+                ),
+                'right' => array(
+                  'name' => 'right',
+                  'title' => __( 'Right', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Position to dispaly flexible menu', 'cleanyeti' ),
+            'section' => 'flex_menu',
+            'tab' => 'menus',
+            'since' => '2.4.2',
+            'default' => 'left'
+        ),
     );
 
     $i = 1;
@@ -1021,6 +1077,22 @@ $tabs = array(
             ),
         ),
     ),
+    'menus' => array(
+        'name' => 'menus',
+        'title' => __( 'Menus', 'cleanyeti' ),
+        'sections' => array(
+            //'locations' => array(
+            //    'name' => 'locations',
+            //    'title' => __( 'Menu Locations', 'cleanyeti' ),
+            //    'description' => __( 'Manage menu locations.  Layout Options for the flexible menu are shown below.', 'cleanyeti' )
+            //),
+            'flex_menu' => array(
+                'name' => 'flex_menu',
+                'title' => __( 'Flexible Menu', 'cleanyeti' ),
+                'description' => __( 'Choose where to display the flexible menu.  The style used for this menu is the foundation inline-list class.', 'cleanyeti' )
+            ),
+        ),
+    ),
 );
 return apply_filters( 'cleanyeti_get_settings_page_tabs', $tabs );
 }
@@ -1048,4 +1120,10 @@ function cleanyeti_admin_notices($hook_suffix) {
     }
 }
 add_action( 'admin_notices', 'cleanyeti_admin_notices' );
+
+/**
+ * @todo Menu Locations
+ */
+ 
+ 
 ?>

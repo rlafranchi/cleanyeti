@@ -125,4 +125,33 @@ function cleanyeti_modal_data() {
 </div>
 <?php
 }
+
+/**
+ * render flexible_menu
+ */
+function cleanyeti_flexible_menu( $menu_args = array() ) {
+    $options = cleanyeti_get_options();
+    $flexpos = $options['flex_menu_position'];
+    $menu_args = array(
+      'theme_location'        => 'cleanyeti_flex_menu',
+      'container'             => false,
+      'menu_class'            => 'inline-list ' . $flexpos,
+      'fallback_cb'           => false,
+      'echo'                  => false,
+      'depth'                 => 1
+	  );
+    $output = '<div class="row" id="cleanyeti-flexible-menu">';
+    $output .= '<div class="medium-12 columns">';
+    $output .= wp_nav_menu( $menu_args );
+    $output .= '</div>';
+    $output .= '</div>';
+    echo apply_filters( 'cleanyeti_flexible_menu', $output, $menu_args );
+}
+$cy_options = cleanyeti_get_options();
+$flex_hook = $cy_options['flex_menu_location'];
+if ( $flex_hook == 'belowwidgets' ) {
+    add_action( 'cleanyeti_footer', 'cleanyeti_flexible_menu', 15 );
+} else {
+    add_action( 'cleanyeti_' . $flex_hook, 'cleanyeti_flexible_menu' );
+}
 ?>

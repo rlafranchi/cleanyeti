@@ -100,14 +100,14 @@ function cleanyeti_theme_setup() {
 	// attachment extensions helps with displaying videos and images
 	require_once ( CLEANYETI_LIB . '/extensions/attachment-extensions.php' );
 	
-    /**
-     * Theme Options and Customizer API
-     * Based on Oenology WordPress Theme, Copyright (C) 2010-2014 Chip Bennett
-     * @link https://www.github.com/chipbennett/oenology
-     */
+  /**
+   * Theme Options and Customizer API
+   * Based on Oenology WordPress Theme, Copyright (C) 2010-2014 Chip Bennett
+   * @link https://www.github.com/chipbennett/oenology
+   */
 	require_once ( CLEANYETI_LIB . '/options/options.php' );
 	require_once ( CLEANYETI_LIB . '/options/options-customizer.php' );
-    require_once ( CLEANYETI_LIB . '/options/options-filters.php' );
+  require_once ( CLEANYETI_LIB . '/options/options-filters.php' );
 
     /**
      * SCSS compiler written in PHP
@@ -139,6 +139,7 @@ function cleanyeti_theme_setup() {
 	// Register Menu Locations
 	register_nav_menu( apply_filters('cleanyeti_primary_menu_id', 'primary-menu'), apply_filters('cleanyeti_primary_menu_name', __( 'Primary Menu', 'cleanyeti' ) ) );
 	register_nav_menu( 'cleanyeti_footer_menu', __( 'Footer Menu', 'cleanyeti' ));
+	register_nav_menu( 'cleanyeti_flex_menu', __( 'Flexible Menu', 'cleanyeti' ));
 
 }
 
