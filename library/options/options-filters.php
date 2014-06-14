@@ -149,9 +149,11 @@ function cleanyeti_flexible_menu( $menu_args = array() ) {
 }
 $cy_options = cleanyeti_get_options();
 $flex_hook = $cy_options['flex_menu_location'];
-if ( $flex_hook == 'belowwidgets' ) {
-    add_action( 'cleanyeti_footer', 'cleanyeti_flexible_menu', 15 );
-} else {
-    add_action( 'cleanyeti_' . $flex_hook, 'cleanyeti_flexible_menu' );
+if ( has_nav_menu( 'cleanyeti_flex_menu' ) ) {
+    if ( $flex_hook == 'belowwidgets' ) {
+        add_action( 'cleanyeti_footer', 'cleanyeti_flexible_menu', 15 );
+    } else {
+        add_action( 'cleanyeti_' . $flex_hook, 'cleanyeti_flexible_menu' );
+    }
 }
 ?>
