@@ -188,18 +188,18 @@ if ( function_exists('childtheme_override_head_scripts') )  {
 		wp_enqueue_style( 'foundation-icons-accessibility' );
 
 		wp_enqueue_script( 'cleanyeti-modernizr-js', get_template_directory_uri() . '/library/Foundation/js/modernizr.js', array( 'jquery' ), '2.8.2' );
-		wp_enqueue_script( 'cleanyeti-foundation-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.js', array(), '5.2.3', true );
-        wp_enqueue_script( 'cleanyeti-foundation-accordion-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.accordion.js', array(), '5.2.3', true );
-        wp_enqueue_script( 'cleanyeti-foundation-tabs-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.tab.js', array(), '5.2.3', true );
-        wp_enqueue_script( 'cleanyeti-foundation-topbar-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.topbar.js', array(), '5.2.3', true );
+		wp_enqueue_script( 'cleanyeti-foundation-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.js', array(), '5.3.0', true );
+        wp_enqueue_script( 'cleanyeti-foundation-accordion-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.accordion.js', array(), '5.3.0', true );
+        wp_enqueue_script( 'cleanyeti-foundation-tabs-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.tab.js', array(), '5.3.0', true );
+        wp_enqueue_script( 'cleanyeti-foundation-topbar-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.topbar.js', array(), '5.3.0', true );
         foreach ( $option_parameters as $option_parameter ) {
             $section = $option_parameter['section'];
             $name = $option_parameter['name'];
             if ( 'javascript' == $section && isset( $cleanyeti_options[$name] ) && 1 == $cleanyeti_options[$name] ) {
-                wp_enqueue_script( 'cleanyeti-foundation-' . $name . '-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.' . $name . '.js', array(), '5.2.3', true );
+                wp_enqueue_script( 'cleanyeti-foundation-' . $name . '-js', get_template_directory_uri() . '/library/Foundation/js/foundation/foundation.' . $name . '.js', array(), '5.3.0', true );
             }
         }
-        wp_enqueue_script( 'cleanyeti-document-js', get_template_directory_uri() . '/library/Foundation/js/document.js', array () , '5.2.3', true );
+        wp_enqueue_script( 'cleanyeti-document-js', get_template_directory_uri() . '/library/Foundation/js/document.js', array () , '5.3.0', true );
 	}
 }
 
@@ -488,7 +488,7 @@ if ( function_exists('childtheme_override_access') )  {
      * Override: childtheme_override_access
      */    
     function cleanyeti_access() {
-    global $cleanyeti_options;
+    global $cleanyeti_options, $wp_customize;
     $cleanyeti_options = cleanyeti_get_options();
     $sticky = ( ( 'sticky' == $cleanyeti_options['header_top_bar_position'] ) ? ' class="found-sticky"' : '' );
     $menuclass = $cleanyeti_options['header_top_bar_menu_position'];
@@ -508,15 +508,6 @@ if ( function_exists('childtheme_override_access') )  {
 <?php 
     	if ( ( function_exists("has_nav_menu") ) && ( has_nav_menu( apply_filters('cleanyeti_primary_menu_id', 'primary-menu') ) ) ) {
     	    echo  wp_nav_menu(cleanyeti_nav_menu_args());
-    	} else {
-    	    echo  "<ul class=\"$menuclass\">\n";
-            echo  "<li><a href=\"#\">" . __( 'Primary', 'cleanyeti' ) . "</a></li>\n";
-            echo  "<li><a href=\"#\">" . __( 'Menu', 'cleanyeti' ) . "</a></li>\n";
-            echo  "<li><a href=\"#\">" . __( 'Location', 'cleanyeti' ) . "</a></li>\n";
-            echo  "<li><a href=\"";
-            echo  home_url() . '/wp-admin/nav-menus.php';
-            echo  "\">" . __( 'Customize Here...', 'cleanyeti' ) . "</a></li>\n";
-            echo  "</ul>\n";	
     	}
 ?>
                 </section>             
