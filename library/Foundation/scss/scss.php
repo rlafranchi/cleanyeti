@@ -31,9 +31,13 @@ function cleanyeti_scss_compile() {
     $scssname = $scsspath . '_cleanyeti.scss';
     $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyeti.css';
+    $childtheme_settings = ( file_exists( get_stylesheet_directory() . '/childtheme_settings.php' ) ) ? get_stylesheet_directory() . '/childtheme_settings.php' : false;
 
     ob_start();
     require( $scsspath . 'settings.php');
+    if ( $childtheme_settings ) {
+      require( $childtheme_settings );
+    }
     $scss = ob_get_clean();
 
     global $wp_filesystem;
@@ -107,9 +111,13 @@ function cleanyeti_ajax_callback() {
     $scssname = $scsspath . '_cleanyetipreview.scss';
     $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyetipreview.css';
+    $childtheme_settings = ( file_exists( get_stylesheet_directory() . '/childtheme_settings.php' ) ) ? get_stylesheet_directory() . '/childtheme_settings.php' : false;
 
     ob_start();
     require( $scsspath . 'preview-settings.php');
+    if ( $childtheme_settings ) {
+      require( $childtheme_settings );
+    }
     $scss = ob_get_clean();
 
 
@@ -155,9 +163,13 @@ function cleanyeti_scss_compile_save() {
     $scssname = $scsspath . '_cleanyeti.scss';
     $csspath = get_template_directory() . '/library/Foundation/css/';
     $cssname = $csspath . 'cleanyeti.css';
+    $childtheme_settings = ( file_exists( get_stylesheet_directory() . '/childtheme_settings.php' ) ) ? get_stylesheet_directory() . '/childtheme_settings.php' : false;
 
     ob_start();
     require( $scsspath . 'settings.php');
+    if ( $childtheme_settings ) {
+      require( $childtheme_settings );
+    }
     $scss = ob_get_clean();
 
 
