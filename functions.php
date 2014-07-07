@@ -121,6 +121,13 @@ function cleanyeti_theme_setup() {
      */
 	require_once ( CLEANYETI_LIB . '/Foundation/scss/scss.php' );
 	require_once ( CLEANYETI_LIB . '/Foundation/scss/scss.inc.php' );
+	
+	
+	/**
+	 * Interchange Shortcode
+	 * @link http://garethcooper.com/2014/03/responsive-images-in-wordpress-using-zurb-foundations-interchange/
+	 */
+	require_once ( CLEANYETI_LIB . '/extensions/interchange.php' );
 
 	// Adds filters for the description/meta content in archive templates
 	add_filter( 'archive_meta', 'wptexturize' );

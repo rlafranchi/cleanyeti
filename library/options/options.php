@@ -198,14 +198,19 @@ function cleanyeti_admin_options_page() {
 
 	<div class="wrap">
 		<?php cleanyeti_get_page_tab_markup(); ?>
-		<?php if ( isset( $_POST['action'] ) ) {
+		<?php if ( isset( $_POST['interchange'] ) ) {
+    				echo '<div class="updated"><p>';
+					echo __( 'Image sizes updated.', 'cleanyeti' );
+					echo '</p></div>';
+                cleanyeti_update_attachments();
+              } elseif ( isset( $_POST['action'] ) ) {
 				if ( $_POST['action'] == 'update' ) {
     				echo '<div class="updated"><p>';
 					echo __( 'Theme settings updated successfully.', 'cleanyeti' );
 					echo '</p></div>';
 					cleanyeti_scss_compile();
 				}
-		} ?>
+              } ?>
 		<form action="" method="post">
 		<?php 
 			// Implement settings field security, nonces, etc.
@@ -1003,7 +1008,12 @@ $tabs = array(
                 'name' => 'info',
                 'title' => __( 'Thank You for using the Clean Yeti Theme', 'cleanyeti' ),
                 'description' => cleanyeti_theme_info()
-                    ),
+            ),
+            'interchange' => array(
+                'name' => 'interchange',
+                'title' => __( 'Interchange Functionality', 'cleanyeti' ),
+                'description' => cleanyeti_interchange_info()
+            ),
             'header' => array(
                 'name' => 'header',
                 'title' => __( 'Header Options', 'cleanyeti' ),
@@ -1095,6 +1105,11 @@ return apply_filters( 'cleanyeti_get_settings_page_tabs', $tabs );
 
 function cleanyeti_theme_info() {
     $text = sprintf( __('Support for this theme is included with your purchase.  Access our support forum here: %s  Need help getting started? Serene Themes also offers Web Development services to help you get started with your website or provide improvements to your current site.  Find out more at %s.', 'cleanyeti' ), ': <a href="http://serenethemes.com/forums/" title="Serene Themes Support Forum">serenethemes.com/forums</a>', '<a href="http://serenethemes.com" title="Serene Themes">serenethemes.com</a>' );
+    return $text;
+}
+
+function cleanyeti_interchange_info() {
+    $text = sprintf( __('Foundations interchange functionality has been integrated into Clean Yeti.  Press the following button to update your media image sizes to be able to take full advantage of Interchange.  If you have a lot of Images in your library, then this may take a while. %s', 'cleanyeti' ), '<input type="submit" class="button button-primary" name="interchange" value="Update">' );
     return $text;
 }
 
