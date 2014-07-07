@@ -72,23 +72,11 @@ function cleanyeti_interchange_shortcode($atts) {
   $attachment_info = wp_get_attachment_image_src($id, 'full');
   
   if ( $size == 'small' ) {
-      $dataInterchange .= '[';
-      $dataInterchange .= $attachment_info[0] . ', ';
-      $dataInterchange .= '(medium)';
-      $dataInterchange .= '],';
-  
+      $dataInterchange .= '[' . $attachment_info[0] . ', (medium)]';
   } elseif ( $size == 'medium' ) {
-      $dataInterchange .= '[';
-      $dataInterchange .= $attachment_info[0] . ', ';
-      $dataInterchange .= '(large)';
-      $dataInterchange .= '],';
-  
+      $dataInterchange .= '[' . $attachment_info[0] . ', (large)]';
   } elseif ( $size == 'large' ) {
-      $dataInterchange .= '[';
-      $dataInterchange .= $attachment_info[0] . ', ';
-      $dataInterchange .= '(xlarge)';
-      $dataInterchange .= '],';
-  
+      $dataInterchange .= '[' . $attachment_info[0] . ', (xlarge)]';
   }
   //Build the interchange <img /> tag
   $html = sprintf('<img alt="%2$s" data-interchange="%1$s" width="%4$d" height="%5$d" class="%6$s" /><noscript><img src="%3$s"></noscript>', $dataInterchange, get_the_title($atts['id']), $imageSizes['file'], $imageSizes['width'], $imageSizes['height'], $atts['class']);
