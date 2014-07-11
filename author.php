@@ -35,7 +35,7 @@
 
     	                <?php
     	               		// display the author's avatar
-    	               		cleanyeti_author_info_avatar();
+    	               		echo cleanyeti_author_info_avatar();
     	                ?>
 
     	                <div class="author-bio note">

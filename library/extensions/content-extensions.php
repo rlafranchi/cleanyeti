@@ -788,26 +788,27 @@ if (function_exists('childtheme_override_postmeta_authorlink'))  {
 	 * Filter: cleanyeti_postmeta_authorlink
 	 */
 	function cleanyeti_postmeta_authorlink() {
-		global $authordata;
-	
-	    $author_prep = '<span class="meta-prep meta-prep-author">' . __('By', 'cleanyeti') . ' </span>';
+      if ( is_author() )
+        return;
+      global $authordata;
+	    $author_prep = '<ul class="vcard">';
+	    $author_prep .= '<li>' . cleanyeti_author_info_avatar() . '</li>';
 	    
 	    if ( cleanyeti_is_custom_post_type() && !current_theme_supports( 'cleanyeti_support_post_type_author_link' ) ) {
-	    	$author_info  = '<span class="vcard"><span class="fn nickname">';
+	    	$author_info  = '<li class="fn">';
 	    	$author_info .= get_the_author_meta( 'display_name' ) ;
-	    	$author_info .= '</span></span>';
+	    	$author_info .= '</li>';
 	    } else {
-	    	$author_info  = '<span class="author vcard">';
+	    	$author_info  = '<li class="fn">';
 	    	$author_info .= sprintf('<a class="url fn n" href="%s" title="%s">%s</a>',
 	    							get_author_posts_url( $authordata->ID, $authordata->user_nicename ),
 									/* translators: author name */
 	    							sprintf( esc_attr__( 'View all posts by %s', 'cleanyeti' ), get_the_author_meta( 'display_name' ) ),
 	    							get_the_author_meta( 'display_name' ));
-	    	$author_info .= '</span>';
+	    	$author_info .= '</li>';
 	    }
 	    
-	    $author_credit = $author_prep . $author_info ;
-	    
+	    $author_credit = $author_prep . $author_info . '</ul>';
 	    return apply_filters('cleanyeti_postmeta_authorlink', $author_credit);
 	   
 	}
@@ -1652,12 +1653,17 @@ if (function_exists('childtheme_override_author_info_avatar'))  {
 	 * Override: childtheme_override_author_info_avatar
 	 */
 	function cleanyeti_author_info_avatar() {
-    
-	    global $wp_query; $curauth = $wp_query->get_queried_object();
-		
-		$email = $curauth->user_email;
-		$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar("$email") );
-		echo $avatar;
+
+
+		if ( is_author() ) {
+		  global $wp_query; $curauth = $wp_query->get_queried_object();
+		  $email = $curauth->user_email;
+		} else {
+		  global $authordata;
+		  $email = $authordata->user_email;
+    }
+		$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar("$email", 60) );
+		return $avatar;
 	}
 } // end author_info_avatar
 
