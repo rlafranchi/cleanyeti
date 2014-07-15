@@ -46,14 +46,14 @@ function cleanyeti_sidebar_open() {
     $index_sdb = $cleanyeti_options['sidebar_index_layout'];
     $archive_sdb = $cleanyeti_options['sidebar_archive_layout'];
     if ( is_page_template( 'template-page-two-sidebars.php' ) || ( is_archive() && ( 'double' == $archive_sdb ) ) || ( is_home() && ( 'double' == $index_sdb ) ) || ( is_single() && ( 'double' == $post_sdb ) ) ) {
-        $open = '<div class="medium-' . $rtwdt . ' columns">';
+        $open = '<div id="sidebar" class="medium-' . $rtwdt . ' columns">';
     } elseif ( is_page_template( 'template-page-left-sidebar.php' ) ) {
-        $open = '<div id="container" class="medium-' . $sbwidth . ' columns">';
+        $open = '<div id="left-sidebar" class="medium-' . $sbwidth . ' columns">';
     } else {
         if ( 'left' == $sbpos ) {
-            $open = '<div class="medium-' . $sbwidth . ' medium-pull-' . $pullwidth . ' columns">';
+            $open = '<div id="left-sidebar" class="medium-' . $sbwidth . ' medium-pull-' . $pullwidth . ' columns">';
         } else {
-            $open = '<div class="medium-' . $sbwidth . ' columns">';
+            $open = '<div id="sidebar" class="medium-' . $sbwidth . ' columns">';
         }
     }
     echo apply_filters('cleanyeti_sidebar_open', $open);
@@ -70,7 +70,7 @@ add_action( 'cleanyeti_belowleftaside', 'cleanyeti_sidebar_close', 99);
 function cleanyeti_sidebar_left_open() {
     $options = cleanyeti_get_options();
     $left = $options['left_sidebar_width'];
-    $open = '<div class="medium-' . $left . ' columns">';
+    $open = '<div id="left-sidebar" class="medium-' . $left . ' columns">';
     echo apply_filters('cleanyeti_sidebar_left_open', $open);
 }
 add_action( 'cleanyeti_aboveleftaside', 'cleanyeti_sidebar_left_open', 1 );
