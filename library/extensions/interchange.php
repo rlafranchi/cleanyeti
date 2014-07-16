@@ -18,7 +18,7 @@ function cleanyeti_update_attachments() {
   if ($attachments) {
       foreach ( $attachments as $post ) {
           $file = get_attached_file( $post->ID );
-          $attach_id = wp_insert_attachment( $post, $file, $post->ID );
+          $attach_id = wp_insert_attachment( $post, $file, $post->post_parent );
           $attach_data = wp_generate_attachment_metadata( $attach_id, $file );
           wp_update_attachment_metadata( $attach_id,  $attach_data );
       }
