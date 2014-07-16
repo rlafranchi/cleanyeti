@@ -9,6 +9,12 @@
  *
  */
 
+// default gallery style
+function cleanyeti_gallery_style() {
+  return false;
+}
+add_filter('use_default_gallery_style','cleanyeti_gallery_style');
+
 function cleanyeti_get_attachment_link( $id = 0, $size = 'thumbnail', $permalink = false, $icon = false, $text = false ) {
     $id = intval( $id );
 	$_post = get_post( $id );

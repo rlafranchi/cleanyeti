@@ -64,9 +64,6 @@ function cleanyeti_theme_setup() {
 	// Load custom header extensions
 	require_once ( CLEANYETI_LIB . '/extensions/header-extensions.php' );
 
-	// Load Shortcodes
-	require_once ( CLEANYETI_LIB . '/extensions/shortcodes.php' );
-
 	// Load custom content filters
 	require_once ( CLEANYETI_LIB . '/extensions/content-extensions.php' );
 
