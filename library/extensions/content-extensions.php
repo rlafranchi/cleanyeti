@@ -1662,7 +1662,7 @@ if (function_exists('childtheme_override_author_info_avatar'))  {
 		  global $authordata;
 		  $email = $authordata->user_email;
     }
-		$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar("$email", 60) );
+		$avatar = str_replace( "class='avatar", "class='photo avatar", get_avatar("$email", 80) );
 		return $avatar;
 	}
 } // end author_info_avatar
