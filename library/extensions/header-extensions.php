@@ -372,8 +372,10 @@ if ( function_exists( 'childtheme_override_brandingopen' ) )  {
         global $cleanyeti_options;
         $cleanyeti_options = cleanyeti_get_options();
         $align = 'text-' . $cleanyeti_options['title_position'];
-		echo '<div class="row ' . $align . '">' . "\n";
-		echo "\t<div id=\"branding\" class=\"medium-10 columns\">\n";
+        if ( 'true' == $cleanyeti_options['display_main_title'] ) {
+            echo '<div class="row ' . $align . '">' . "\n";
+            echo "\t<div id=\"branding\" class=\"medium-10 columns\">\n";
+        }
     }
 }
 
@@ -393,12 +395,15 @@ if ( function_exists( 'childtheme_override_blogtitle' ) )  {
      * 
      * Override: childtheme_override_blogtitle
      */    
-    function cleanyeti_blogtitle() { 
-    ?>
-    
-    	<div id="blog-title"><a href="<?php echo esc_url(home_url()); ?>/" title="<?php bloginfo('name'); ?>" rel="home"><h1><?php bloginfo('name'); ?></h1></a></div>
-    
-    <?php 
+    function cleanyeti_blogtitle() {
+        $cleanyeti_options = cleanyeti_get_options();
+        if ( 'true' == $cleanyeti_options['display_main_title'] ) :
+        ?>
+
+          <div id="blog-title"><a href="<?php echo esc_url(home_url()); ?>/" title="<?php bloginfo('name'); ?>" rel="home"><h1><?php bloginfo('name'); ?></h1></a></div>
+
+        <?php
+        endif;
     }
 }
 
@@ -421,8 +426,11 @@ if ( function_exists('childtheme_override_blogdescription') )  {
     function cleanyeti_blogdescription() {
         $blogdescclass = '"subheader"';
     	$blogdesc = '"blog-description">' . get_bloginfo('description', 'display');
-        echo "\t<h3 class=$blogdescclass id=$blogdesc</h3>\n\n";
-        echo '</div>';
+        $cleanyeti_options = cleanyeti_get_options();
+        if ( 'true' == $cleanyeti_options['display_main_title'] ) {
+            echo "\t<h3 class=$blogdescclass id=$blogdesc</h3>\n\n";
+            echo '</div>';
+        }
     }
 }
 
@@ -445,9 +453,12 @@ if ( function_exists('childtheme_override_logo_display') )  {
         global $wp_customize, $cleanyeti_options;
         $cleanyetioptions = cleanyeti_get_options();
         $cleanyetilogo = $cleanyetioptions['logo'];
-        ?>
-        <div class="medium-2 columns"><a href="<?php echo esc_url(home_url()); ?>" rel="home"><img class="th" src='<?php echo $cleanyetilogo; ?>' alt="<?php echo get_bloginfo('name'); ?>"></a></div>
-        <?php
+        $logo_position = $cleanyetioptions['logo_position'];
+        if ( 'below_menu' == $logo_position ) {
+            ?>
+            <div class="medium-2 columns"><a href="<?php echo esc_url(home_url()); ?>" rel="home"><img class="th" src='<?php echo $cleanyetilogo; ?>' alt="<?php echo get_bloginfo('name'); ?>"></a></div>
+            <?php
+        }
     }
 }
 add_action('cleanyeti_header','cleanyeti_logo_display',5);
@@ -467,7 +478,9 @@ if ( function_exists('childtheme_override_brandingclose') )  {
      * Override: childtheme_override_brandingclose
      */    
     function cleanyeti_brandingclose() {
-    	echo "\t\t</div><!--  #branding -->\n";
+        $cleanyeti_options = cleanyeti_get_options();
+        if ( 'true' == $cleanyeti_options['display_main_title'] )
+            echo "\t\t</div><!--  #branding -->\n";
     }
 }
 
@@ -492,12 +505,14 @@ if ( function_exists('childtheme_override_access') )  {
     $cleanyeti_options = cleanyeti_get_options();
     $sticky = ( ( 'sticky' == $cleanyeti_options['header_top_bar_position'] ) ? ' class="found-sticky"' : '' );
     $menuclass = $cleanyeti_options['header_top_bar_menu_position'];
+    $cleanyetilogo = $cleanyeti_options['logo'];
     ?> 
         <div id="access"<?php echo $sticky; ?>>
             <nav class="top-bar" data-topbar>
                 <ul class="title-area">
                 <!-- Title Area -->
                     <li class="name">
+                        <?php if  ( 'with_menu' == $cleanyeti_options['logo_position'] ) : ?><img class="menu-logo" src='<?php echo $cleanyetilogo; ?>' alt="<?php echo get_bloginfo('name'); ?>"><?php endif; ?>
                         <?php if ( 'true' == $cleanyeti_options['display_top_bar_title'] ) : ?><h1><a href="<?php echo esc_url(home_url()); ?>/" title="<?php bloginfo('name'); ?>" rel="home"><?php bloginfo('name'); ?></a></h1><?php endif; ?>
                     </li>
                     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->

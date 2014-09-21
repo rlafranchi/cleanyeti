@@ -334,6 +334,26 @@ function cleanyeti_get_option_parameters() {
             'since' => '2.3.0',
             'default' => 'http://placehold.it/100x100'
         ),
+        'logo_position' => array(
+            'name' => 'logo_position',
+            'title' => __( 'Logo Position', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'below_menu' => array(
+                    'name' => 'below_menu',
+                    'title' => __( 'Below the Top Bar Menu', 'cleanyeti' )
+                ),
+                'with_menu' => array(
+                    'name' => 'with_menu',
+                    'title' => __( 'Within the Top Bar Menu', 'cleanyeti' )
+                ),
+            ),
+            'description' => __( 'Choose whether to display a logo below the menu or within the menu', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.5.3',
+            'default' => 'below_menu'
+        ),
         'display_admin_notice' => array(
             'name' => 'display_admin_notice',
             'title' => __( 'Display Admin Notice', 'cleanyeti' ),
@@ -367,6 +387,26 @@ function cleanyeti_get_option_parameters() {
             'tab' => 'general',
             'since' => '2.3.0',
             'default' => 'left'
+        ),
+        'display_main_title' => array(
+            'name' => 'display_main_title',
+            'title' => __( 'Display Main Title and Tagline', 'cleanyeti' ),
+            'type' => 'select',
+            'valid_options' => array(
+                'false' => array(
+                    'name' => 'false',
+                    'title' => __( 'Do Not Display', 'cleanyeti' )
+                ),
+                'true' => array(
+                    'name' => 'true',
+                    'title' => __( 'Display', 'cleanyeti' )
+                )
+            ),
+            'description' => __( 'Choose whether or not to hide the site title and tagline below the Top Bar Menu.', 'cleanyeti' ),
+            'section' => 'header',
+            'tab' => 'general',
+            'since' => '2.5.3',
+            'default' => 'true'
         ),
         'header_color' => array(
             'name' => 'header_color',
