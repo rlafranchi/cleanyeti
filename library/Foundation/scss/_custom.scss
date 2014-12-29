@@ -262,10 +262,14 @@ ul.checkmark.success li:before {
     @extend .th;
 }
 
-#header {
-    background-color: $cyb-header-bg-color;
+@if variable-exists(cyb-header-bg-color) {
+  #header {
+      background-color: $cyb-header-bg-color;
+  }
 }
 
-#footer {
-    background-color: $cyb-footer-bg-color;
+@if variable-exists(cyb-footer-bg-color) {
+  #footer {
+      background-color: $cyb-footer-bg-color;
+  }
 }
