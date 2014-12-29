@@ -8,6 +8,8 @@
 
 var gulp           = require('gulp'),
     runSequence    = require('run-sequence'),
+    rename         = require('gulp-rename'),
+    rimraf         = require('rimraf'),
     sass           = require('gulp-ruby-sass'),
     path           = require('path');
 
@@ -21,7 +23,10 @@ var sassPaths = [
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
-
+// Cleans the build directory
+gulp.task('clean', function(cb) {
+  rimraf('./library/Foundation/css', cb);
+});
 
 // Copies user-created files and Foundation assets
 gulp.task('copy', function() {
@@ -45,32 +50,36 @@ gulp.task('sass', function() {
   return gulp.src('library/Foundation/scss/cleanyeti-app.scss')
     .pipe(sass({
       loadPath: sassPaths,
-      style: 'compressed',
-      bundleExec: true
+      style: 'nested',
+      bundleExec: true,
+      sourcemap: false
     }))
     .on('error', function(e) {
       console.log(e);
     })
-    .pipe(gulp.dest('./library/Foundation/css/cleanyeti-default.css'));
+    .pipe(rename('cleanyeti-default.css'))
+    .pipe(gulp.dest('./library/Foundation/css'));
 });
 
 gulp.task('sass-preview', function() {
   return gulp.src('library/Foundation/scss/cleanyeti-app-preview.scss')
     .pipe(sass({
       loadPath: sassPaths,
-      style: 'compressed',
-      bundleExec: true
+      style: 'nested',
+      bundleExec: true,
+      sourcemap: false
     }))
     .on('error', function(e) {
       console.log(e);
     })
-    .pipe(gulp.dest('./library/Foundation/css/cleanyetipreview.css'));
+    .pipe(rename('cleanyetipreview.css'))
+    .pipe(gulp.dest('./library/Foundation/css'));
 });
 
 
 // Builds your entire app once, without starting a server
 gulp.task('build', function() {
-  runSequence('copy-sass', ['copy-js', 'copy', 'sass', 'sass-preview'], function() {
+  runSequence('clean', ['copy-sass', 'copy-js', 'copy', 'sass', 'sass-preview'], function() {
     console.log("Successfully built.");
   })
 });
@@ -78,5 +87,5 @@ gulp.task('build', function() {
 // Default task: builds your app, starts a server, and recompiles assets when they change
 gulp.task('default', ['build'], function() {
   // Watch Sass
-  gulp.watch(['./library/Foundation/scss/**/*'], ['sass']);
+  gulp.watch(['./library/Foundation/scss/**/*'], ['sass', 'sass-preview']);
 });

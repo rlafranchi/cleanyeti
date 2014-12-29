@@ -5,7 +5,6 @@
 @import "global";
 @import "buttons";
 
-
 //
 // Button Group Variables
 //
@@ -58,7 +57,6 @@ $button-group-border-width: 1px !default;
   }
   @else {
     margin: 0 -2px;
-    float: none;
     display: inline-block;
   }
 
@@ -66,11 +64,11 @@ $button-group-border-width: 1px !default;
     display:block;
     margin:0;
     > button, .button {
-    border-top: $button-group-border-width solid;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-left-width: 0px;
-    margin:0;
-    display: block;
+      border-top: $button-group-border-width solid;
+      border-color: rgba(255, 255, 255, 0.5);
+      border-left-width: 0;
+      margin:0;
+      display: block;
     }
 
     &:first-child {
@@ -143,7 +141,6 @@ $button-group-border-width: 1px !default;
     width: percentage((100/$even) / 100);
     button, .button { width: 100%; }
   }
-
 }
 
 @include exports("button-group") {
@@ -153,7 +150,7 @@ $button-group-border-width: 1px !default;
       & > li { @include button-group-style(); }
 
       &.stack {
-        & > li { @include button-group-style($orientation:vertical); }
+        & > li { @include button-group-style($orientation:vertical); float: none; }
       }
 
       &.stack-for-small {
@@ -194,7 +191,7 @@ $button-group-border-width: 1px !default;
 
     .button-bar {
       @include clearfix;
-      .button-group { @include button-group-container($styles:false,$float:true); }
+      .button-group { @include button-group-container($styles:false, $float:true); }
     }
   }
 }
